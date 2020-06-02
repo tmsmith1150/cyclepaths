@@ -1,0 +1,27 @@
+#incidents{
+    text-align: center;
+    font-size: 100px;
+    font-family: 'Patua One', cursive;
+    margin:auto;
+    display:block;
+    
+}
+
+
+#cross-road{
+    width:11%;
+    display:inline-flex;
+    padding-left: 20px;
+}
+.incidents-head, .index-head{
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Patua One', cursive;
+    background-color: teal;
+    color: white;
+
+
+}
+/* .container-title{
+    margin-left: 10pxs;
+} */
