@@ -10,9 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="incidents.css">
 </head>
+<script>
+  setInterval(() => {
+var time = moment().format('LT');
+ $("#currentTime").text(time);
+}, 1000);
+</script>
 <body>
   <header>
     <h1 class="incidents-head">Cyclepaths</h1>
+    <div id="currentTime"></div>
   </header>  
   <div class="container-color">
   <ul class="flex border-b">
@@ -24,6 +31,9 @@
     </li>
     <li class="mr-1">
       <a class="bg-#5cf7d0ec inline-block py-2 px-4 text-black-500 hover:text-blue-800 font-semibold" href="events.html">Events</a>
+    </li>
+    <li class="mr-1">
+      <a class="bg-#5cf7d0ec inline-block py-2 px-4 text-black-500 hover:text-blue-800 font-semibold" href="Weather.html">Weather</a>
     </li>
   </ul>
   </div>
@@ -91,7 +101,7 @@
  </div>
   <div class="container mx-auto px-4">
     <!-- ... -->
-  <div class="grid grid-cols-2 gap-4">
+  <div class="contain grid grid-cols-2 gap-4">
       <div class="max-w-sm rounded overflow-hidden shadow-lg">
         <img class="w-full" src="https://www.rginjurylaw.com/wp-content/uploads/rg-injury-law-bike-injury-bicycle-accident-cases-.png" alt="Sunset in the mountains">
         <div class="px-6 py-4">
