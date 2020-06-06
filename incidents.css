@@ -135,3 +135,11 @@ p{
     font-weight: 300;
     letter-spacing: 5px;
 }
+#group{
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Patua One', cursive;
+    background-color: teal;
+    color: white;
+}
+
