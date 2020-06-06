@@ -24,7 +24,8 @@ $(document).ready(function(){
 
         $.get(baseURL,function(res){
             let data = res.current;
-            let temp = Math.floor(data.temp-220);
+            console.log(res)
+            let temp = Math.floor(data.temp - 273.15 * 5/9 + 32);
             let condition = data.weather[0].description;
 
             $('#temp-main').html(`${temp}°`);
