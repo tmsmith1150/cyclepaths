@@ -3,8 +3,7 @@ let elementArr = [];
 let fee;
 let duration;
 
-let urlNames = ['Charlotte-Area-Cycling','CarolinaTrail','Team-Left-Hand','Charlotte-Urban-Bicycling','Carolinas-Recumbent-Trike-Meetup','Exercise-and-Excursion-with-Blue-Blaze-Brewing','Adventure-Explorers',
-  'meetup-group-EsJtZwgF','Daytime-Fun-Seeker','Arista-Networks-Charlotte-Meetup'];
+let urlNames = ['Charlotte-Area-Cycling','CarolinaTrail','Team-Left-Hand','Charlotte-Urban-Bicycling','Carolinas-Recumbent-Trike-Meetup','Exercise-and-Excursion-with-Blue-Blaze-Brewing','Adventure-Explorers','Daytime-Fun-Seeker'];
 
 urlNames.forEach( element => {
   let groupOption = $("<option>");
