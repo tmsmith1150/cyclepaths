@@ -5,13 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <title>cyclepaths</title>
+  <title>Cyclepaths</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-192x192-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" type="image/png" href="icon-reg.png">
   <script src="https://kit.fontawesome.com/1471da07d6.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="incidents.css">
 </head>
 <script>
+  // <!-- sets clock -->
+
   setInterval(() => {
     var time = moment().format('LT');
     $("#currentTime").text(time);
@@ -19,7 +26,8 @@
 </script>
 <body>
 <header>
-  <h1 class="incidents-head">Cyclepaths</h1>
+  <!-- add icon to the top next to the header -->
+  <h1 class="incidents-head">Cyclepaths<Img src="icon-reg.png" id="icon"></h1>
   <div id="currentTime"></div>
 </header>
 <div class="container-color">
