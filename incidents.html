@@ -1,145 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <title>cyclepaths</title>
-    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="incidents.css">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="incidents.css">
 </head>
+<script>
+  setInterval(() => {
+    var time = moment().format('LT');
+    $("#currentTime").text(time);
+  }, 1000);
+</script>
+
 <body>
-  <header>
-    <h1 class="incidents-head">Cyclepaths</h1>
-  </header>  
-  <div class="container-color">
+<header>
+  <h1 class="incidents-head">Cyclepaths</h1>
+  <div id="currentTime"></div>
+</header>
+<div class="container-color">
   <ul class="flex border-b">
     <li class="-mb-px mr-1">
-      <a class="bg-#5cf7d0ec inline-block border-l border-t border-r rounded-t py-2 px-4 text-black-700 font-semibold" href="incidents.html">Incidents</a>
+      <a class="bg-#5cf7d0ec inline-block border-l border-t border-r rounded-t py-2 px-4 text-black-700 font-semibold"
+         href="incidents.html">Incidents</a>
     </li>
     <li class="mr-1">
-      <a class="bg-#5cf7d0ec inline-block py-2 px-4 text-black-500 hover:text-blue-800 font-semibold" href="index.html">Homepage</a>
+      <a class="bg-#5cf7d0ec inline-block py-2 px-4 text-black-500 hover:text-blue-800 font-semibold"
+         href="index.html">Homepage</a>
     </li>
     <li class="mr-1">
-      <a class="bg-#5cf7d0ec inline-block py-2 px-4 text-black-500 hover:text-blue-800 font-semibold" href="events.html">Events</a>
+      <a class="bg-#5cf7d0ec inline-block py-2 px-4 text-black-500 hover:text-blue-800 font-semibold"
+         href="events.html">Events</a>
+    </li>
+    <li class="mr-1">
+      <a class="bg-#5cf7d0ec inline-block py-2 px-4 text-black-500 hover:text-blue-800 font-semibold"
+         href="Weather.html">Weather</a>
     </li>
   </ul>
+</div>
+<p id="incidents">Incidents<Img src="https://static.thenounproject.com/png/2724852-200.png" id="cross-road"></p>
+<div class="container mx-auto px-1">
+  <!-- ... -->
+  <div class="row-span-1">
+    <div class="grid-cols-4">
+      <form class="w-full max-w-xlg">
+        <div class="flex flex-wrap -mx-3 mb-2">
+          <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+              City
+            </label>
+            <input
+              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city" type="text" placeholder="Albuquerque">
+          </div>
+          <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+              State
+            </label>
+            <div class="relative">
+              <select
+                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-state">
+                <option>New Mexico</option>
+                <option>Missouri</option>
+                <option>Texas</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+              Radius
+            </label>
+            <input
+              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip" type="text" placeholder="5miles">
+          </div>
+          <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+              Incident Type
+            </label>
+            <div class="relative">
+              <select
+                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-state">
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+              <button id="submit">
+                Submit
+              </button>
+            </label>
+          </div>
+
+        </div>
+    </div>
   </div>
-  <p id="incidents">Incidents<Img src="https://static.thenounproject.com/png/2724852-200.png" id="cross-road"></p> 
-  <div class="container mx-auto px-1">
-    <!-- ... -->
- <div class="row-span-1">
-   <div class="grid-cols-4">
-    <form class="w-full max-w-xlg">
-      <div class="flex flex-wrap -mx-3 mb-2">
-        <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-            City
-          </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
-        </div>
-        <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-            State
-          </label>
-          <div class="relative">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-              <option>New Mexico</option>
-              <option>Missouri</option>
-              <option>Texas</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-            Radius 
-          </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="5miles">
-        </div>
-        <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-            Incident Type
-          </label>
-          <div class="relative">
-            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-           
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-        <button id="submit">
-          Submit
-        </button>
-        </label>
-      </div>
-  
-        </div>
-      </div>
-        </div>
-      </form>
-      </div>
-   </div>
- </div>
-  <div class="container mx-auto px-4">
-    <!-- ... -->
-  <div class="grid grid-cols-2 gap-4">
-      <div class="max-w-sm rounded overflow-hidden shadow-lg">
-        <img class="w-full" src="https://www.rginjurylaw.com/wp-content/uploads/rg-injury-law-bike-injury-bicycle-accident-cases-.png" alt="Sunset in the mountains">
-        <div class="px-6 py-4">
-          <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-          <p class="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-          </p>
-        </div>
-        <div class="px-6 py-4">
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
-        </div>
-      </div>
-    <!-- ... -->
-    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-      <img class="w-full" src="https://www.rginjurylaw.com/wp-content/uploads/rg-injury-law-bike-injury-bicycle-accident-cases-.png" alt="Sunset in the mountains">
+  </form>
+</div>
+</div>
+</div>
+<div class="container mx-auto px-4">
+  <!-- ... -->
+  <div class="contain grid grid-cols-2 gap-4">
+    <div class="b-g max-w-sm rounded overflow-hidden shadow-lg">
+      <img class="w-full" src="placeholder" alt="">
       <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+        <div class="font-bold text-xl mb-2">Title</div>
         <p class="text-gray-700 text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+
         </p>
       </div>
       <div class="px-6 py-4">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
+          <span
+            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
       </div>
     </div>
-    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-      <img class="w-full" src="https://www.rginjurylaw.com/wp-content/uploads/rg-injury-law-bike-injury-bicycle-accident-cases-.png" alt="Sunset in the mountains">
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p class="text-gray-700 text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-        </p>
-      </div>
-      <div class="px-6 py-4">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
-      </div>
-    </div>
-</div>
-</div>
-</div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+  </div>
+
+  <footer id="group" class="flex items-end">
+    <p>Cyclepaths by Brenden Forbis, Jess Moran, Tom Scarborough, Michelle Jordan</p>
+    <P>API's that were used openweathermap.org, moment.js, www.meetup.com, bikewise.org, Tailwind, fontawesome, google
+      fonts, jquery. </p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
