@@ -18,22 +18,20 @@ states.forEach( element => {
 incidents.forEach( element => {
     var incidentOption = $("<option>");
     incidentOption.text(element);
-    $("#grid-incident").append(element);
+    $("#grid-incident").append(incidentOption);
 });
 
 //listens to button click and appends values of input fields and puts them into to api
 submitButton.on("click", function(e) {
     event.preventDefault();
     var cityName = cityNameEl.val();
-    localStorage.setItem(cityName)
     var stateName = stateNameEl.val();
-    localStoarge.setItem(stateName)
     var radius = radiusE1.val();
         console.log(cityName);
         console.log(stateName);
         console.log(radius);
 
-    var queryUrl = "https://bikewise.org:443/api/v2/incidents?page=1&per_page=4&incident_type=" + incidentE1 + "&proximity=" + cityName + stateName +"&proximity_square="+ radius
+    var queryUrl = "https://bikewise.org:443/api/v2/incidents?page=1&per_page=4&incident_type=" +  + "&proximity=" + cityName + stateName +"&proximity_square="+ radius
     $.ajax({
         url: queryUrl,
         method: "GET",
