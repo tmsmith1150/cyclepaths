@@ -3,75 +3,98 @@ let elementArr = [];
 let fee;
 let duration;
 
-let urlNames = ['Charlotte-Area-Cycling','CarolinaTrail','Team-Left-Hand','Charlotte-Urban-Bicycling','Carolinas-Recumbent-Trike-Meetup','Exercise-and-Excursion-with-Blue-Blaze-Brewing','Adventure-Explorers','Daytime-Fun-Seeker'];
+let urlNames = ['Charlotte-Area-Cycling', 'CarolinaTrail', 'Team-Left-Hand', 'Charlotte-Urban-Bicycling', 'Carolinas-Recumbent-Trike-Meetup', 'Exercise-and-Excursion-with-Blue-Blaze-Brewing', 'Adventure-Explorers', 'Daytime-Fun-Seeker'];
 
-urlNames.forEach( element => {
+urlNames.forEach(element => {
   let groupOption = $("<option>");
   groupOption.text(element);
   $("#gridGroup").append(groupOption);
 });
 
-$('#submit').on("click", function(event) {
+$('#submit').on("click", function (event) {
   event.preventDefault();
+
+  cleanArea();
 
   let group = groupInput.val();
 
-  let groupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/" + group;
+  requestGroup(group);
+
+  requestEvents(group);
+});
+
+
+function requestGroup(group) {
+  let teamURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/" + group;
 
   $.ajax({
-    url: groupURL,
+    url: teamURL,
     method: "GET"
-  }).then(function (groupResponse) {
-    let groupName = groupResponse.name;
-    let groupDesc = groupResponse.description;
-    let members = groupResponse.members;
-    let photo = groupResponse.key_photo.photo_link;
+  }).then(function (teamResponse) {
+    let groupName = teamResponse.name;
+    let groupDesc = teamResponse.description.split('<p>', 4);
+    let members = teamResponse.members;
+    let photo = teamResponse.key_photo.photo_link;
 
+    let groupDescContainer = $('<div>');
+    let container = $('<div>');
     let h2 = $('<h2>');
     let users = $('<span>');
-    let img  = $('<im>');
+    let img = $('<im>');
     let icon = $('<i>');
+
+    groupDesc.forEach(elem => {
+      elem = elem.slice(0, elem.length - 5);
+      let pElem = $('<p>');
+      $(pElem).text(elem);
+      $(pElem).addClass('text-left');
+      $(groupDescContainer).append(pElem);
+    });
 
     h2.text(groupName);
     users.text(members);
     img.attr('src', photo);
 
+    container.addClass('bg-white shadow-lg rounded w-full mt-24 p-6');
     h2.addClass('text-4xl text-teal-500 my-3 d-inline');
     icon.addClass('fas fa-users text-teal-500 text-2xl m-3');
 
-    $('#groupDescription').append(h2);
-    $('#groupDescription').append(icon);
-    $('#groupDescription').append(users);
-    $('#groupDescription').append(groupDesc);
-    $('#groupDescription').append(img);
+    $('#groupDescription').append(container);
+    $(container).append(h2);
+    $(container).append(icon);
+    $(container).append(users);
+    $(container).append(groupDescContainer);
+    $(container).append(img);
   });
+}
 
+function requestEvents(group) {
   let eventsURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/" + group + "/events?&sign=true&photo-host=public&page=20";
 
   $.ajax({
     url: eventsURL,
     method: "GET"
   }).then(function (response) {
-    response.forEach( element => {
+    response.forEach(element => {
       elementArr.push(element);
 
       elementArr.forEach(event => {
-        let description = event.description;
+        let eventDesc = event.description.split('<p>', 2);
         let date = event.local_date;
         let time = event.local_time;
-        let howToFindUs =event.how_to_find_us;
+        let howToFindUs = event.how_to_find_us;
         let durationMls = event.duration;
         let payment = event.member_pay_fee;
         let link = event.link;
 
-        if ( payment === false ) {
-          fee  = 'Free';
+        if (payment === false) {
+          fee = 'Free';
         }
 
         msToHrs(durationMls);
 
+        let eventDescContainer = $('<div>');
         let cardDiv = $('<div>');
-        let pTitle = $('<p>');
         let ul = $('<ul>');
         let durationCont = $('<div>');
         let stopWatchIcon = $('<i>');
@@ -86,14 +109,21 @@ $('#submit').on("click", function(event) {
         let mapIcon = $('<i>');
         let addressLi = $('<li>');
         let paymentCont = $('<div>');
-        let paymentIcon = $ ('<i>');
+        let paymentIcon = $('<i>');
         let feeLi = $('<li>');
         let div = $('<div>');
         let p = $('<p>');
         let a = $('<a>');
 
+        eventDesc.forEach(elem => {
+          elem = elem.slice(0, elem.length - 5);
+          let pElem = $('<p>');
+          $(pElem).text(elem);
+          pElem.addClass('font-bold mb-2 text-justify');
+          $(eventDescContainer).append(pElem);
+        });
+
         cardDiv.addClass('w-full max-w-sm rounded overflow-hidden shadow-lg px-6 py-4 bg-white');
-        pTitle.addClass('font-bold text-xl mb-2');
         ul.addClass('event-container text-gray-700 text-base');
         addressLi.addClass('text-left');
         div.addClass('text-right');
@@ -109,17 +139,16 @@ $('#submit').on("click", function(event) {
         paymentCont.addClass('flex m-3');
         calendarCont.addClass('flex m-3');
 
-        pTitle.text('description');
         dateLi.text(date);
         timeLi.text(time);
         addressLi.text(howToFindUs);
         durationLi.text(duration);
-        feeLi.text( fee);
+        feeLi.text(fee);
         a.text('More info');
-        a.attr('href',link);
+        a.attr('href', link);
 
         $('#cardsContainer').append(cardDiv);
-        $(cardDiv).append(pTitle);
+        $(cardDiv).append(eventDescContainer);
         $(cardDiv).append(ul);
         $(ul).append(durationCont);
         $(durationCont).append(stopWatchIcon);
@@ -142,9 +171,22 @@ $('#submit').on("click", function(event) {
       });
     });
   });
-});
+}
 
-function msToHrs (durationMls) {
+function msToHrs(durationMls) {
   let tempTime = moment.duration(durationMls);
   duration = tempTime.hours() + 'hrs' + ' ' + tempTime.minutes() + 'min';
+}
+
+// Clean the areas for the next views
+function cleanArea() {
+  //Clear group description div
+  while (groupDescription.firstChild) {
+    groupDescription.removeChild(groupDescription.firstChild);
+  }
+
+  //Clear cards container
+  while (cardsContainer.firstChild) {
+    cardsContainer.removeChild(cardsContainer.firstChild);
+  }
 }
