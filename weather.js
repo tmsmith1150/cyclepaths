@@ -1,11 +1,8 @@
 $(document).ready(function(){
-    function getLocation(){
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(getWeather);
-        }else{
-            alert("Geolocation not supported by this browser");
-        }
-    }
+    var geolocation=document.getElementById("location")
+    
+
+  
 
     var kelvin=document.getElementById("kel")
     var fahrenheit=document.getElementById("far")
@@ -14,17 +11,17 @@ $(document).ready(function(){
     celsius.addEventListener("click", function(){
         console.log("click")
         units="&units=metric";
-        getLocation();
+        navigator.geolocation.getCurrentPosition(getWeather);
     })
     fahrenheit.addEventListener("click", function(){
         console.log("click")
         units="&units=imperial";
-        getLocation();
+        navigator.geolocation.getCurrentPosition(getWeather);
     })
     kelvin.addEventListener("click", function(){
         console.log("click")
         units="";
-        getLocation();
+        navigator.geolocation.getCurrentPosition(getWeather);
     })
 
 
