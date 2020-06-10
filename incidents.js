@@ -35,8 +35,8 @@ radiusE2.forEach( element => {
 //listens to button click and appends values of input fields and puts them into to api
 submitButton.on("click", function(e) {
     event.preventDefault();
-    $("#containerCard").empty();
     $("#divContainer").empty();
+    $("#containerCard").empty();
     var cityName = cityNameEl.val();
     var stateName = stateNameEl.val();
     var radius = radiusE1.val();
