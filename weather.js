@@ -31,7 +31,7 @@ $(document).ready(function(){
         let lat = position.coords.latitude;
         let long = position.coords.longitude;
         let API_KEY = '2eec2dbdcaba6e2f1c110b67cde1c0d3';
-        let baseURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${API_KEY}${units}`;
+        let baseURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${API_KEY}${units}`;
        console.log(baseURL)
 
         $.get(baseURL,function(res){
