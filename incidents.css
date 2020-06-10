@@ -28,11 +28,10 @@
 }
 
 .incidents-head, .index-head{
-    text-align: center;
-    font-size: 50px;
-    font-family: 'Patua One', cursive;
+    
     background-color: teal;
-    color: white;
+    display: flex;
+    justify-content: center;
 }
 
 .container-search{
@@ -206,8 +205,14 @@ p{
     
 }
 #icon{
-    width: 7%;
+    width: 5%;
     display:inline-flex;
     padding-left: 20px;
 }
+#title-head{
+    font-size: 50px;
+    font-family: 'Patua One', cursive;
+    color: white;
 
+
+}
