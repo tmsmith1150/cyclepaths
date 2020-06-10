@@ -1,9 +1,13 @@
 var cityNameEl = $("#grid-city");
 var stateNameEl = $("#grid-state");
 var radiusE1 = $("#grid-zip");
+var fixRadius = "100"
+var incidentE1 = $("#grid-incident");
 var submitButton = $("#submit");
+var container 
 var states = ["Select a State","Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri"," Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont", "Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
-var incidents = ["Select an incident", "Theft", "Crash", "Hazard", "Unconfirmed", "Infrastructure Issue"]
+var incidents = ["Select an incident", "theft", "crash", "hazard", "unconfirmed"];
+var radiusE2 = ["Select a distance", "25", "50", "75", "100", "125", "150"];
 
 
 
@@ -21,22 +25,41 @@ incidents.forEach( element => {
     $("#grid-incident").append(incidentOption);
 });
 
+//appending radius distance to radius droptdown menu
+radiusE2.forEach( element => {
+    var radiusOptions = $("<option>");
+    radiusOptions.text(element);
+    $("#grid-zip").append(radiusOptions);
+})
+
 //listens to button click and appends values of input fields and puts them into to api
 submitButton.on("click", function(e) {
     event.preventDefault();
+    $("#containerCard").empty();
     var cityName = cityNameEl.val();
     var stateName = stateNameEl.val();
     var radius = radiusE1.val();
+    var incident = incidentE1.val();
         console.log(cityName);
         console.log(stateName);
         console.log(radius);
+        console.log(incident);
 
-    var queryUrl = "https://bikewise.org:443/api/v2/incidents?page=1&per_page=4&incident_type=" +  + "&proximity=" + cityName + stateName +"&proximity_square="+ radius
+    var queryUrl = "https://bikewise.org:443/api/v2/incidents?page=1&per_page=6&incident_type=" + incident + "&proximity=" + cityName + stateName +"&proximity_square=" + radius
     $.ajax({
         url: queryUrl,
         method: "GET",
     }).then( function(response) {
         console.log(response);
+//if no reported incidents it will show a default message
+        if ( response.incidents.length === 0 ){
+            let divElem = $('<div>');
+            let pElem = $('<p>');
+            pElem.text('No incidents reported');
+            pElem.addClass('text-4xl text-white text-center');
+            $('#divContainer').append(divElem);
+            $(divElem).append(pElem);
+          }
         var incidentResponse = response.incidents;
     incidentResponse.forEach( element => {
         console.log(element);
@@ -47,6 +70,7 @@ submitButton.on("click", function(e) {
         var divE3 = $("<div>");
         var divE4 = $("<div>");
         var pE1 = $("<p>");
+        var pE2 = $("<p>");
         var aE1 = $("<a>");
         var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + element.source.html_url + "&amp;src=sdkpreparse"
         divE1.addClass("bg-white max-w-sm rounded overflow-hidden shadow-lg");
@@ -72,7 +96,7 @@ submitButton.on("click", function(e) {
             };
 /*Build facebook share button*/
            $(pE1).append(divE4);
-           $(divE4).addClass("fb-share-button");
+           $(divE4).addClass("fb-share-button mt-3");
            $(divE4).attr("data-href", element.source.html_url );
            $(divE4).attr("data-layout", "button");
            $(divE4).attr("data-size", "small");
@@ -82,8 +106,8 @@ submitButton.on("click", function(e) {
            $(aE1).addClass("bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full");
            $(aE1).text("Share to Facebook");    
             
+        });
     });
-    })
 });
 
 
