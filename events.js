@@ -16,6 +16,8 @@ $('#submit').on("click", function (event) {
 
   cleanArea();
 
+  $('#noEventsDiv').empty();
+
   let group = groupInput.val();
 
   requestGroup(group);
