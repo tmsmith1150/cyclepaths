@@ -75,6 +75,19 @@ function requestEvents(group) {
     url: eventsURL,
     method: "GET"
   }).then(function (response) {
+
+    if ( response.length === 0 ){
+      let divElem = $('<div>');
+      let pElem = $('<p>');
+
+      pElem.text('No current events');
+      divElem.addClass('flex justify-center text-center');
+      pElem.addClass('text-4xl text-white p-32');
+
+      $('#noEventsDiv').append(divElem);
+      $(divElem).append(pElem);
+    }
+
     response.forEach(element => {
       elementArr.push(element);
 

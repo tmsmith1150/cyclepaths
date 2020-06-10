@@ -43,8 +43,8 @@ $(document).ready(function(){
             $('#temp-main').html(`${temp}°`);
             $('#condition').html(condition);
         })
-        
+
     }
 
     getLocation();
-})
+});
