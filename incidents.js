@@ -36,6 +36,7 @@ radiusE2.forEach( element => {
 submitButton.on("click", function(e) {
     event.preventDefault();
     $("#containerCard").empty();
+    $("#divContainer").empty();
     var cityName = cityNameEl.val();
     var stateName = stateNameEl.val();
     var radius = radiusE1.val();
