@@ -28,7 +28,7 @@
 }
 
 .incidents-head, .index-head{
-    
+    height: 400px;
     background-color: teal;
     display: flex;
     justify-content: center;
@@ -215,4 +215,5 @@ p{
     size: 200px;
     padding: -50%;
     margin-right: 40px;
+    height: 400px;
 }
