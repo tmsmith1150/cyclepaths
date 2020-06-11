@@ -204,15 +204,15 @@ p{
     padding-bottom: 10px;
     
 }
-#icon{
-    width: 10%;
-    display:inline-flex;
-    padding-left: 20px;
-}
 #title-head{
     font-size: 50px;
     font-family: 'Patua One', cursive;
     color: white;
 
 
+}
+#logo{
+    size: 200px;
+    padding: -50%;
+    margin-right: 40px;
 }
