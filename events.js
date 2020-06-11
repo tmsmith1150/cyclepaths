@@ -1,16 +1,20 @@
+//Global variables
 let groupInput = $('#gridGroup');
 let elementArr = [];
 let fee;
 let duration;
 
+//Array with group names
 let urlNames = ['Charlotte-Area-Cycling', 'CarolinaTrail', 'Team-Left-Hand', 'Charlotte-Urban-Bicycling', 'Carolinas-Recumbent-Trike-Meetup', 'Exercise-and-Excursion-with-Blue-Blaze-Brewing', 'Adventure-Explorers', 'Daytime-Fun-Seeker'];
 
+//Iterates the array to put in to the select
 urlNames.forEach(element => {
   let groupOption = $("<option>");
   groupOption.text(element);
   $("#gridGroup").append(groupOption);
 });
 
+//After click on submit button it runs different functions
 $('#submit').on("click", function (event) {
   event.preventDefault();
 
@@ -25,7 +29,7 @@ $('#submit').on("click", function (event) {
   requestEvents(group);
 });
 
-
+//It does a request to get the group description according to the user selection and shows some characteristics about
 function requestGroup(group) {
   let teamURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/" + group;
 
@@ -70,6 +74,7 @@ function requestGroup(group) {
   });
 }
 
+//Request to bring upcoming events and show the events details
 function requestEvents(group) {
   let eventsURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/" + group + "/events?&sign=true&photo-host=public&page=20";
 
@@ -188,6 +193,7 @@ function requestEvents(group) {
   });
 }
 
+//Change milliseconds to hours and minutes
 function msToHrs(durationMls) {
   let tempTime = moment.duration(durationMls);
   duration = tempTime.hours() + 'hrs' + ' ' + tempTime.minutes() + 'min';
@@ -199,7 +205,7 @@ function cleanArea() {
   while (groupDescription.firstChild) {
     groupDescription.removeChild(groupDescription.firstChild);
   }
-
+  
   //Clear cards container
   while (cardsContainer.firstChild) {
     cardsContainer.removeChild(cardsContainer.firstChild);
