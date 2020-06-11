@@ -21,18 +21,13 @@
     display:block;
 }
 
-#cross-road{
+#cross-road {
     width: 10%;
     display:inline-flex;
     padding-left: 20px;
 }
 
-.incidents-head, .index-head{
-    
-    background-color: teal;
-    display: flex;
-    justify-content: center;
-}
+
 
 .container-search{
    margin-left: 50px;
@@ -208,11 +203,16 @@ p{
     width: 5%;
     display:inline-flex;
     padding-left: 20px;
+    
 }
 #title-head{
+ 
+    
     font-size: 50px;
     font-family: 'Patua One', cursive;
     color: white;
+    background-color: teal;
+   
 
 
 }
